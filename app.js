@@ -1,11 +1,19 @@
-const { leerInput } = require("./helpers/inquirer");
+const { leerInput, pausa, inquirerMenu } = require("./helpers/inquirer");
 
 
 const main  = async ( ) => {
 
-    const texto = await leerInput('Agregando mensaje');
+    let opt;
+    do{
 
-    console.log(texto);
+        opt = await inquirerMenu();
+        console.log({opt});
+        
+        if(opt !== 0) await pausa();
+        
+
+    }while( opt !== 0 )
+
 
 }
 main();

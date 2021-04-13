@@ -9,33 +9,22 @@ const preguntas =
     message:'Que desea hacer?',
     choices: [ 
         {
-            value: '1',
-            name:`${'1.'.blue}Crear Tarea`
+            value: 1,
+            name:`${'1.'.blue} Buscar Ciudad`
         },
         {
-            value: '2',
-            name: `${'2.'.blue}Listar Tareas`
+            value: 2,
+            name: `${'2.'.blue} Historial`
         },
         {
-            value: '3',
-            name:`${'3.'.blue}Listar tareas completadas`
+            value: 3,
+            name:`${'3.'.blue} Listar tareas completadas`
         },
         {
-            value: '4',
-            name:`${'4.'.blue}Listar tareas pendientes`
+            value: 0,
+            name:`${'0.'.blue} Salir`
         },
-        {
-            value: '5',
-            name:`${'5.'.blue}Completar Tarea(s)`
-        },
-        {
-            value: '6',
-            name:`${'6.'.blue}Borrar Tarea`
-        },
-        {
-            value: '0',
-            name:`${'0.'.blue}Salir`
-        }
+
             ]
     }
 ];
