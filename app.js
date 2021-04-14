@@ -1,7 +1,7 @@
 //  Para hacer que el token se pueda guardar de manera global
 require('dotenv').config()
 
-const { leerInput, pausa, inquirerMenu } = require("./helpers/inquirer");
+const { leerInput, pausa, inquirerMenu, listarLugares } = require("./helpers/inquirer");
 const Busquedas = require("./models/busquedas");
 
 console.log(process.env.MAPBOX_KEY);
@@ -19,14 +19,17 @@ const main  = async ( ) => {
         switch ( opt ){
 
             case 1:
-            const lugar = await leerInput('Ciudad:')
-            console.log(lugar);
-            await busquedas.ciudad( lugar );
+            const termino = await leerInput('Ciudad:')
+            const lugares = await busquedas.ciudad( termino );
+            const id = await listarLugares(lugares);
+            const lugarSel = lugares.find( (l) => l.id === id);
+            // console.log(lugarSel);
 
-            console.log('Informacion de la ciudad');
-            console.log('Ciudad:');
-            console.log('Lat');
-            console.log('long');
+            console.log('\n');
+            console.log('Informacion de la ciudad',lugarSel.nombre);
+            console.log('Ciudad:',lugarSel.nombre);
+            console.log('Lat', lugarSel.lat);
+            console.log('long',lugarSel.lng);
             console.log('Temperatura:');
             console.log('Minima:');
             console.log('Maxima:');
