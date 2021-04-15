@@ -22,7 +22,13 @@ const main  = async ( ) => {
             const termino = await leerInput('Ciudad:')
             const lugares = await busquedas.ciudad( termino );
             const id = await listarLugares(lugares);
+            if(id === '0') continue;
+
+            // Guardar en db
+            
             const lugarSel = lugares.find( (l) => l.id === id);
+
+            busquedas.agregarHisotial(lugarSel.nombre)
             // console.log(lugarSel);
             // const clima = await busquedas.
             const prueba = await  busquedas.climaLugar(lugarSel.lat,lugarSel.lng);
@@ -41,6 +47,14 @@ const main  = async ( ) => {
                 break;
 
             case 2:
+
+            busquedas.historial.forEach((lugar, i ) => {
+
+                const idx = `${i + 1}.`.blue;
+                console.log(`${idx} ${lugar}`);
+            })
+
+
                 break;
         }
 
