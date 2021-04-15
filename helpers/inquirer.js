@@ -17,10 +17,6 @@ const preguntas =
             name: `${'2.'.blue} Historial`
         },
         {
-            value: 3,
-            name:`${'3.'.blue} Listar tareas completadas`
-        },
-        {
             value: 0,
             name:`${'0.'.blue} Salir`
         },
