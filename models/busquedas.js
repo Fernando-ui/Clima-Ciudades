@@ -10,7 +10,7 @@ class Busquedas {
 
     constructor( ) {
 
-        //TODO: Leer el db 
+        this.leerBD();
 
     }
     get getParamsMapbox ( ){
@@ -23,6 +23,20 @@ class Busquedas {
         }
     };
 
+
+    get getHistorialCapitalizado(){
+        
+        return this.historial.map(( element ) => {
+
+            let palabras = element.split(' ');
+            
+            palabras =  palabras.map((p) => p[0].toUpperCase() + p.substring(1));
+
+            return palabras.join(' ');
+            // palabras.charAt(0).toUpperCase() + palabras.slice(1);
+        })
+
+    }
 
     async ciudad ( lugar = ''){
 
@@ -98,6 +112,10 @@ class Busquedas {
         if(this.historial.includes(lugar.toLocaleLowerCase())){
             return;
         }
+
+        // Indicamos que solo queremos 5
+        this.historial = this.historial.splice(0,5);
+        
         this.historial.unshift(lugar.toLocaleLowerCase());
 
         this.guardarDB();
@@ -113,6 +131,18 @@ class Busquedas {
 
     }
     leerBD(){
+
+        if(this.historial){
+
+            const info = fs.readFileSync(this.dbPath,{
+                encoding:'utf-8'
+            });
+
+            const data = JSON.parse(info);
+
+            this.historial = data.historial;
+
+        }
 
 
     }

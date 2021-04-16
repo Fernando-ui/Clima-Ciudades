@@ -29,12 +29,10 @@ const main  = async ( ) => {
             const lugarSel = lugares.find( (l) => l.id === id);
 
             busquedas.agregarHisotial(lugarSel.nombre)
-            // console.log(lugarSel);
-            // const clima = await busquedas.
             const prueba = await  busquedas.climaLugar(lugarSel.lat,lugarSel.lng);
             const {desc,min,max,temp} = await prueba;
             
-
+            
             console.log('\n');
             console.log('Informacion de la ciudad',lugarSel.nombre);
             console.log('Ciudad:',lugarSel.nombre);
@@ -44,16 +42,17 @@ const main  = async ( ) => {
             console.log('Minima:',min);
             console.log('Maxima:',max);
             console.log('Como esta el clima:',desc);
-                break;
-
+            break;
+            
             case 2:
-
-            busquedas.historial.forEach((lugar, i ) => {
-
-                const idx = `${i + 1}.`.blue;
-                console.log(`${idx} ${lugar}`);
-            })
-
+            
+                busquedas.getHistorialCapitalizado.forEach((lugar, i ) => {
+                    
+                    const idx = `${i + 1}.`.blue;
+                    console.log(`${idx} ${lugar}`);
+                })
+                busquedas.leerBD();
+                
 
                 break;
         }
